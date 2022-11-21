@@ -3,6 +3,7 @@ package com.studying.stella.web;
 import com.studying.stella.service.PostsService;
 import com.studying.stella.web.dto.PostsResponseDto;
 import com.studying.stella.web.dto.PostsSaveRequestDto;
+import com.studying.stella.web.dto.PostsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,5 +23,15 @@ public class PostsApiController {
         return postsService.findById(id);
     }
 
+    @PutMapping("/api/v1/posts/{id}")
+    public Long update(@PathVariable Long id, @RequestBody PostsUpdateRequestDto requestDto){
+        return postsService.update(id, requestDto);
+    }
+
+    @DeleteMapping("/api/v1/posts/{id}")
+    public Long delete(@PathVariable Long id) {
+        postsService.delete(id);
+        return id;
+    }
 
 }
